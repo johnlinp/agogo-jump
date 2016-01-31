@@ -1,11 +1,22 @@
 (function() {
 	var agogoSketch = document.getElementById('agogo-sketch');
 	var agogoCircles = document.getElementById('agogo-circles');
+	var grassArray = [
+		document.getElementById('grass-1'),
+		document.getElementById('grass-2'),
+		document.getElementById('grass-3'),
+		document.getElementById('grass-4'),
+	];
 
 	var timeJump = 0.9;
 	var timeRest = 1.5;
 	var jumpHeight = 150;
 	var jumpDistance = 300;
+
+	var grassWidth = 1200; // width of grass.svg
+	var grassOverlap = 120;
+	var grassDistance = grassWidth - grassOverlap;
+	var timeRoll = 6;
 
 	function initAgogo() {
 		TweenLite.to(agogoSketch, 0, {
@@ -14,6 +25,25 @@
 		});
 		TweenLite.to(agogoCircles, 0, {
 			x: 0,
+			y: 0,
+		});
+	}
+
+	function initGrass() {
+		TweenLite.to(grassArray[0], 0, {
+			x: -grassDistance * 2,
+			y: 0,
+		});
+		TweenLite.to(grassArray[1], 0, {
+			x: -grassDistance,
+			y: 0,
+		});
+		TweenLite.to(grassArray[2], 0, {
+			x: 0,
+			y: 0,
+		});
+		TweenLite.to(grassArray[3], 0, {
+			x: grassDistance,
 			y: 0,
 		});
 	}
@@ -175,6 +205,32 @@
 		agogoCirclesJump();
 	}
 
+	function moveGrass() {
+		TweenLite.to(grassArray[0], timeRoll, {
+			x: -grassDistance,
+			ease: Power0.easeNone,
+		});
+		TweenLite.to(grassArray[1], timeRoll, {
+			x: 0,
+			ease: Power0.easeNone,
+		});
+		TweenLite.to(grassArray[2], timeRoll, {
+			x: grassDistance,
+			ease: Power0.easeNone,
+		});
+		TweenLite.to(grassArray[3], timeRoll, {
+			x: grassDistance * 2,
+			ease: Power0.easeNone,
+			onComplete: function() {
+				initGrass();
+				moveGrass();
+			}
+		});
+	}
+
 	initAgogo();
 	agogoJump();
+
+	initGrass();
+	moveGrass();
 })();
