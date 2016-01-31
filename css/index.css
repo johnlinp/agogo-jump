@@ -10,7 +10,7 @@ body, html {
 }
 
 #agogo {
-	width: 200px;
+	clear: both;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
