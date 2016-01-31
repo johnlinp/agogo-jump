@@ -13,12 +13,12 @@ body, html {
 .agogo {
 	clear: both;
 	position: absolute;
-	top: 50%;
 	right: 20%;
+	bottom: 140px;
 }
 
 .grass {
 	clear: both;
 	position: absolute;
-	top: 60%;
+	bottom: -60px;
 }
