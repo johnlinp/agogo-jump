@@ -85,24 +85,21 @@
 	}
 
 	function agogoCirclesJump() {
-		var timeDelay = 0.07;
 		var timeBounce = 0.1;
 		var bounceDepth = 20;
 
 		function jumpUp() {
-			TweenLite.to(agogoCircles, timeJump / 2 - timeDelay, {
+			TweenLite.to(agogoCircles, timeJump / 2, {
 				y: -jumpHeight,
 				ease: Power1.easeOut,
-				delay: timeDelay,
 				onComplete: jumpDown,
 			});
 		}
 
 		function jumpDown() {
-			TweenLite.to(agogoCircles, timeJump / 2 - timeDelay, {
+			TweenLite.to(agogoCircles, timeJump / 2, {
 				y: 0,
 				ease: Power1.easeIn,
-				delay: timeDelay,
 			});
 		}
 
@@ -111,23 +108,14 @@
 				x: -jumpDistance,
 				ease: Power0.easeNone,
 				onComplete: function() {
-					moveRight1();
+					moveRight();
 					bounceDown1();
 				}
 			});
 		}
 
-		function moveRight1() {
-			TweenLite.to(agogoCircles, timeRest / 2 - timeDelay, {
-				x: -jumpDistance / 2,
-				delay: timeDelay,
-				ease: Power0.easeNone,
-				onComplete: moveRight2,
-			});
-		}
-
-		function moveRight2() {
-			TweenLite.to(agogoCircles, timeRest / 2, {
+		function moveRight() {
+			TweenLite.to(agogoCircles, timeRest, {
 				x: 0,
 				ease: Power0.easeNone,
 			});
