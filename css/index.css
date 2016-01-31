@@ -20,5 +20,5 @@ body, html {
 .grass {
 	clear: both;
 	position: absolute;
-	bottom: 0;
+	top: 60%;
 }
